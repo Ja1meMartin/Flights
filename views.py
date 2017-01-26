@@ -1,5 +1,6 @@
 from __future__ import print_function
 from .models import create_statement, Flight, Trip, Start
+#import .formparts 
 from flask import Flask, request, session, redirect, url_for, render_template, flash
 import sys
 import importlib
@@ -30,6 +31,16 @@ def date_to_list(date):
 
 
 
+	
+@app.route('/wizard', methods = ['GET','POST'])
+def wizard():
+    p("IN Wizard - NEED TO FILL IN FROM SESSION VARIABLES")
+    if request.method == 'POST':
+        return request.form.get('start_airport')
+    return render_template('wizard.html')
+
+
+	
 @app.route('/register', methods=['GET','POST'])
 def register():
 	trips = None
